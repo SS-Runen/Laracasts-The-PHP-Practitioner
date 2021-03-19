@@ -1,0 +1,6 @@
+2021-03-19
+
+Proofs of concept successful.
+    Database model created on MySQL Workbench.
+    Model was forward engineered onto local MySQL and onto AWS RDS MySQL instance.
+    Hompage index.php took data from local and AWS MySQL instances and displayed through PDO.
