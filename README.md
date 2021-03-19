@@ -1,4 +1,4 @@
-# Laracasts-The-PHP-Practitioner
+# Laracasts: The PHP Practitioner
  
 ## SQL script to create database and tables in default form with default data:
 
