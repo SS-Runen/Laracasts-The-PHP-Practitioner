@@ -4,3 +4,10 @@ Proofs of concept successful.
     Database model created on MySQL Workbench.
     Model was forward engineered onto local MySQL and onto AWS RDS MySQL instance.
     Hompage index.php took data from local and AWS MySQL instances and displayed through PDO.
+
+2021-03-22
+    Test of hand-made classes unsuccessfull. Database connection is good and there is no syntax error. Not resolved:
+    Valid PDOStatement was being created successfully but returning False when PDOStatement->fetch() was called.
+    Suspicious:
+    Lines 32, 40, and 44 in DBManager tirggered Notice: Only variables should be passed by reference...
+
