@@ -9,5 +9,11 @@ Proofs of concept successful.
     Test of hand-made classes unsuccessfull. Database connection is good and there is no syntax error. Not resolved:
     Valid PDOStatement was being created successfully but returning False when PDOStatement->fetch() was called.
     Suspicious:
-    Lines 32, 40, and 44 in DBManager tirggered Notice: Only variables should be passed by reference...
+    Lines 32, 40, and 44 in DBManager tirggered Notice: Only variables should be passed by reference.
+
+2021-03-24
+    Hand-made classes working.
+    - Modified Configuration file. Variables declared outside of a class are not accessible to it or its methods/funcitons. Had to modify Configuration.php.
+    - Result of PDOStatement->fetch() were false because of missing PDOStatement->execute(). Tested using verfied correct SQL statement. The fetch() method will only succeed if execute has previously been called. It implies that the PDOStatement instance object is modified after a call to execute, allowing fetch to work.
+
 

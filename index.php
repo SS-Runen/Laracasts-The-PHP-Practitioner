@@ -1,6 +1,7 @@
 <?php
 
 require "Database/DBManager.php";
+// error_reporting(0);
 
 $pdo = null;
 try {

@@ -1,4 +1,5 @@
 <?php
+
 ?>
 
 <html>
@@ -23,8 +24,7 @@
             $id = $userlist_row["user_id"];
             $name = $userlist_row["username"];
             echo "<tr><td>$id</td><td>$name</td></tr>";
-        }
-        var_dump($array_users);
+        }        
         ?>
     </table>
     </center>
