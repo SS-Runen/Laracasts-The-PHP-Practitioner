@@ -1,0 +1,11 @@
+<?php
+Router::makeURI_Table();
+Router::setRoute(
+    $uri="",
+    $view_path="Controllers/index.controller.php"
+);
+Router::setRoute(
+    $uri="uri_list",
+    $view_path="Controllers/sitepages.controller.php"
+);
+?>

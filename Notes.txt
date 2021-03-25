@@ -15,5 +15,6 @@ Proofs of concept successful.
     Hand-made classes working.
     - Modified Configuration file. Variables declared outside of a class are not accessible to it or its methods/funcitons. Had to modify Configuration.php.
     - Result of PDOStatement->fetch() were false because of missing PDOStatement->execute(). Tested using verfied correct SQL statement. The fetch() method will only succeed if execute has previously been called. It implies that the PDOStatement instance object is modified after a call to execute, allowing fetch to work.
-
-
+2021-03-25
+    Result of PDOStatement->execute() is traversable. When traversing a PDOStatement object element-wise after a successful return of results, each element is returned as an associative array by default.
+    Unable to create table for routes.
