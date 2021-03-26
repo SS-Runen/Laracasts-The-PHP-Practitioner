@@ -18,3 +18,8 @@ Proofs of concept successful.
 2021-03-25
     Result of PDOStatement->execute() is traversable. When traversing a PDOStatement object element-wise after a successful return of results, each element is returned as an associative array by default.
     Unable to create table for routes.
+    Hand-made functions working for unknown reason: removing PDOStatement->bindParam() and using the literal variables instead caused user list to be displayed properly using hand-made DBManager.
+2021-03-26
+    - Partially verified that DBManager and Router are working. To clarify, errors on previous day were ocurring even when database, table and data were created. This was becuase when DBManager::returnCurrentConnection was called, there was no connection created yet. Solved by adding self::prepareToQuery() in definition of returnCurrentConnection.
+    - Testing by hard-coding URI as input into the Router::returnPath function succeeded. Database was also being created automatically and bootstrap file was being used as a "preloader" in index.php.
+    - Problem not solved: when URI aside from plain "host/ProjectName/" was typed into address bar, it was "Not Found". Presumed to be issue with XAMPP configuration not being set to direct all traffic, i.e. all URIs, to index.php.

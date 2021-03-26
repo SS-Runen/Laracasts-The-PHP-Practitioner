@@ -72,6 +72,7 @@ class DBManager {
         }
 
     public static function returnCurrentConnection () {
+        self::prepareToQuery();
         return self::$connection_in_use;
     }
 
@@ -88,11 +89,11 @@ class DBManager {
         String $constraints=""        
     ) {
         self::prepareToQuery();
+        $query_string="SELECT $columns FROM $tbl $constraints";
 
         $pdo_stmt = self::$connection_in_use->prepare(
             //$statement="SELECT :cols FROM :tbl :constraints ;"
-            //$statement="SELECT * FROM tbl_users;"
-            $statement="SELECT $columns FROM $tbl $constraints"
+            $statement=$query_string
         );
         if (!is_a($pdo_stmt, "PDOStatement")) {
             $actual_type = gettype($pdo_stmt);
@@ -101,28 +102,15 @@ class DBManager {
             throw $notPDO_exception;
         }
 
-        // $pdo_stmt->bindParam(
-        //     $paramter=":tbl",
-        //     $variable=$tbl,
-        //     $data_type=PDO::PARAM_STR
-        // );
-
-        // $pdo_stmt->bindParam(
-        //     $parameter=":cols",
-        //     $variable=$columns,
-        //     $data_type=PDO::PARAM_STR
-        // );
-
-        // $pdo_stmt->bindParam(
-        //     $parameter=":constraints",
-        //     $variable=$constraints,
-        //     $data_type=PDO::PARAM_STR
-        // );
+        $failure_message = <<<STR
+        Query failed to execute. PDOStatement->execute() returned false on:\n
+        $query_string
+        STR;
 
         $pdo_stmt->execute();
         if ($pdo_stmt == false) {
             throw new Exception(
-                $message="Query failed to execute. PDOStatement->execute() returned false."
+                $message=$failure_message
             );
         }
         
