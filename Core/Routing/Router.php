@@ -13,10 +13,9 @@ class Router {
         $routestbl_name="tbl_routes";
         $query = <<<STR
         CREATE TABLE IF NOT EXISTS `$db_name`.`$routestbl_name` (
-            `route_id` INT NOT NULL AUTO_INCREMENT,
             `uri` VARCHAR(256) NOT NULL,
             `path` VARCHAR(1024) NOT NULL,
-            PRIMARY KEY (`route_id`));          
+            PRIMARY KEY (`uri`));          
         STR;
 
         $rslt=DBManager::returnCurrentConnection();
@@ -38,25 +37,16 @@ class Router {
     public static function setRoute (
         $uri,
         $view_path
-    ) {        
-        $datetime = date(
-            $format="Y-m-d H:i:s"    
-        );
-        // $str_sql = <<<STR
-        // INSERT INTO
-        // `wt_perfmon`.`tbl_users`
-        // (`route_id`, `uri`, `path`)
-        // VALUES
-        // ('$datetime', '$uri', '$view_path') as new_values
-        // ON DUPLICATE KEY UPDATE
-        // uri=new_values.uri,
-        // path=new_values.path;
-        // STR;
+    ) {
 
         DBManager::insert(
             $table="`wt_perfmon`.`tbl_routes`",
             $columns="(`uri`, `path`)",
-            $values="('$uri', '$view_path')"
+            $values="('$uri', '$view_path')",
+            $constraints="AS new_route
+            ON DUPLICATE KEY UPDATE
+              uri=new_route.uri,
+              path=new_route.path;"
         );
     }
 

@@ -118,13 +118,14 @@ class DBManager {
     }
 
     public static function insert(
-        String $source,
+        String $target,
         String $columns,
         String $values,
+        String $constraints="",
         array $options=[]
     ) {
         self::prepareToQuery();
-        $sql_string = "INSERT INTO $source $columns VALUES $values;";
+        $sql_string = "INSERT INTO $target $columns VALUES $values $constraints;";
 
         $pdo_stmt = self::$connection_in_use->prepare(
             $statement=$sql_string,
@@ -135,7 +136,7 @@ class DBManager {
 
         if ($pdo_stmt == false) {
             throw new Exception (
-                $message="Failed to insert into database. Query string:\n$sql_string"
+                $message="Failed to insert into database. Query string:\n$sql_string\n"
             );
         }
         return $pdo_stmt;
