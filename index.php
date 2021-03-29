@@ -1,18 +1,15 @@
 <?php
 require "./Core/Bootstrap.php";
 
-echo "RAW URI:\n";
+echo "<hr>RAW URI:<br>";
 var_dump($_SERVER["REQUEST_URI"]);
 
 $passed_uri = preg_split(
     $pattern="[/]", $subject=trim($_SERVER["REQUEST_URI"], '/'),
 );
 
-$passed_uri = implode(
-    $array=array_slice(
-        $array=$passed_uri,
-        $offset=2)
-);
+$passed_uri = implode($passed_uri);
+echo "<hr>Processed URI:<br>";
 var_dump($passed_uri);
 // die();
 $controller_path = Router::returnPath($passed_uri)->fetch(PDO::FETCH_ASSOC)["path"];
@@ -22,6 +19,7 @@ $controller_path = Router::returnPath($passed_uri)->fetch(PDO::FETCH_ASSOC)["pat
 //     echo "<h3>Error occured in directing you to \"$passed_uri\". Returning to Home Page.</h3>";
 //     require "Controllers/index.controller.php";
 // }
+echo "<hr>Fetched Filepath:<br>$controller_path";
 require $controller_path;
 
 ?>

@@ -9,7 +9,7 @@
     <ul>
         <?php
         foreach ($pdostmt_sitepages as $rslt_row) {
-            echo "<li>".$rslt_row["uri"]."</li>";
+            echo "<li>[".$rslt_row["uri"]."]</li>";
         }
         ?>
     </ul>
