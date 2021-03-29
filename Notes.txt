@@ -23,3 +23,7 @@ Proofs of concept successful.
     - Partially verified that DBManager and Router are working. To clarify, errors on previous day were ocurring even when database, table and data were created. This was becuase when DBManager::returnCurrentConnection was called, there was no connection created yet. Solved by adding self::prepareToQuery() in definition of returnCurrentConnection.
     - Testing by hard-coding URI as input into the Router::returnPath function succeeded. Database was also being created automatically and bootstrap file was being used as a "preloader" in index.php.
     - Problem not solved: when URI aside from plain "host/ProjectName/" was typed into address bar, it was "Not Found". Presumed to be issue with XAMPP configuration not being set to direct all traffic, i.e. all URIs, to index.php.
+2021-03-29
+    - Removed route_id from tbl_routes to prevent multiple registering of the same route. URI is now used as primary key since it should be unique anyway.
+    - From StackOverflow answer. Changed php.ini file to automatically load the PHP extension: "extension=pdo_mysql". Searched for error message thrown by PHP server. It ran a toy PHP script successfully (displayed "Hello World!") but errored on own project.
+    - Routing is not fixed. URI "uri_list" still leads to index.php.
