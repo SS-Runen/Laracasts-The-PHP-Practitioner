@@ -1,27 +1,28 @@
 <?php
+// Options to show warnings/errors.
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
-try {
-    /*
-    PHP class definition:
-    public __construct ( string $dsn , string $username = ? , string $passwd = ? , array $options = ? )
-    */
-    $pdo = new PDO(
-        $dsn = "127.0.0.1",
-        $username = "root",
-        $passwd = "root",
-        $options = []
-    );
-} catch (PDOException $e) {    
-    echo "<pre>"."Could not connect to database. Error:\n$e"."</pre>";
-}
+require "./Core/Bootstrap.php";
 
-$str_sql = "SELECT * FROM tbl_users";
-$pdostmt_temp = $pdo->prepare($str_sql);
-$pdostmt_temp->execute();
+echo "<hr>RAW URI:<br>";
+var_dump($_SERVER["REQUEST_URI"]);
 
-$userlist = $pdostmt_temp->fetchAll(PDO::FETCH_OBJ);
+$passed_uri = Router::getURI();
+echo "<hr>Processed URI:<br>";
+var_dump($passed_uri);
 
-#Require Homepage view file.
-require "index.view.php";
+echo "<hr>Request Type:<br>";
+var_dump(Router::getReqeustType());
+// die();
+$filepath = Router::returnPath($passed_uri, Router::getReqeustType());
+// $filepath = Router::returnPath("uri_list")->fetch(PDO::FETCH_ASSOC)["path"];
+
+// if (!is_a($filepath, "String") || is_null($filepath)) {
+//     echo "<h3>Error occured in directing you to \"$passed_uri\". Returning to Home Page.</h3>";
+//     require "Controllers/index.controller.php";
+// }
+echo "<hr>Fetched Filepath:<br>$filepath";
+require $filepath;
 
 ?>
