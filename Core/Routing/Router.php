@@ -15,6 +15,7 @@ class Router {
         CREATE TABLE IF NOT EXISTS `$db_name`.`$routestbl_name` (
             `uri` VARCHAR(256) NOT NULL,
             `path` VARCHAR(1024) NOT NULL,
+            `request_type` VARCHAR(12) NOT NULL,
             PRIMARY KEY (`uri`));          
         STR;
 
@@ -35,40 +36,57 @@ class Router {
     }
 
     public static function setRoute (
-        $uri,
-        $view_path
+        String $uri,
+        String $filepath,
+        String $request_type="GET"
     ) {
 
         DBManager::insert(
-            $table="`wt_perfmon`.`tbl_routes`",
-            $columns="(`uri`, `path`)",
-            $values="('$uri', '$view_path')",
+            $target="`wt_perfmon`.`tbl_routes`",
+            $columns="(`uri`, `path`, `request_type`)",
+            $values="('$uri', '$filepath', '$request_type')",
             $constraints="AS new_route
             ON DUPLICATE KEY UPDATE
-              uri=new_route.uri,
-              path=new_route.path;"
+              path=new_route.path,
+              request_type=new_route.request_type;"
         );
     }
 
     public static function returnPath (
-        $uri
+        String $uri,
+        String $request_type="GET"
     ) {
         $result = DBManager::query(
             $tbl="`wt_perfmon`.`tbl_routes`",
             $columns="path",
-            $constraints="WHERE uri = '$uri'"
+            $constraints="WHERE uri = '$uri' AND request_type='$request_type'"
         );
-        // if ($result == false) {
-        //     throw new Exception("URI not found in database.");
-        // }
-        // else {
-        //     $result->fetch(PDO::FETCH_ASSOC);
-        //     if ($result == false || (!is_a($result, "array"))) {
-        //         throw new Exception("Failed to fetch result set for this URI: [$uri]).");
-        //     }
-        // }
+        $error_message = <<<STR
+        "PDO returned `false` for the parameters of DBManagement::query.\n
+        Target=$tbl,\n
+        Columns=$columns,\n
+        Constraints=$constraints
+        [END]
+        STR;
 
-        return $result;
+        return $result->fetch(PDO::FETCH_ASSOC)["path"];
+    }
+
+    public static function getURI () {
+        $plain_uri = trim(
+            $str=parse_url(
+                $url=$_SERVER["REQUEST_URI"],
+                $component=PHP_URL_PATH
+                ),
+            $charlist='/'
+        );
+        
+        return $plain_uri;
+    }
+
+    public static function getReqeustType () {
+        $req_type = $_SERVER["REQUEST_METHOD"];
+        return $req_type;
     }
 }
 

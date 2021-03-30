@@ -14,4 +14,7 @@
         ?>
     </ul>
     </center>
-</html>
+
+<?php
+include "snippets/footer.php";
+?>

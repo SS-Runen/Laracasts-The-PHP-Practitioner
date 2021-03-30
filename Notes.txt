@@ -27,3 +27,7 @@ Proofs of concept successful.
     - Removed route_id from tbl_routes to prevent multiple registering of the same route. URI is now used as primary key since it should be unique anyway.
     - From StackOverflow answer. Changed php.ini file to automatically load the PHP extension: "extension=pdo_mysql". Searched for error message thrown by PHP server. It ran a toy PHP script successfully (displayed "Hello World!") but errored on own project.
     - Routing works now. Can now modify project directly in GitHub folder. Had to remove array_slice on URI in index.php. In XAMPP, URI from $_SERVER['REQUEST_URI'] included "/Laracasts-The.../". When running `php -S localhost:4005`, URI is plain/project's containing folder is omitted.
+2021-03-30
+    - Azure Depoyment Center service did not offer option for PHP in runtime stack. Cancelling trial.
+    - Rudimentary/primitive routing to special pages/controllers working.
+    - ISSUE: When using Router::setRoute(), the order in which the parameters are given in the call also changes the database column they are inserted into. Named parameters were used.
