@@ -6,6 +6,14 @@ class DBManager {
     private static $default_connection;
     private static $db_defaults;
 
+    public static function log_query (String $sql_string) {
+        $sql_query = "INSERT INTO `wt_perfmon`.`tbl_queries` VALUES (:sql_string);";
+        $pdo = self::returnCurrentConnection();
+        $stmt = $pdo->prepare($sql_query);
+        $stmt->bindParam(':sql_string', $sql_string);
+        $stmt->execute();
+    }
+
     public static function makeConnection (
         $new_dsn,
         $new_username,
@@ -119,26 +127,33 @@ class DBManager {
 
     public static function insert(
         String $target,
-        String $columns,
+        String $columns="",
         String $values,
+        // String $columns="",
         String $constraints="",
-        array $options=[]
+        array $options=[],
+        bool $log_query=false
     ) {
         self::prepareToQuery();
-        $sql_string = "INSERT INTO $target $columns VALUES $values $constraints;";
+        $sql_string = sprintf(
+            $format="INSERT INTO %s %s VALUES %s %s;",
+            $args=$target, $columns, $values, $constraints
+        );
 
         $pdo_stmt = self::$connection_in_use->prepare(
             $statement=$sql_string,
             $driver_options=$options
         );
 
-        $pdo_stmt->execute();
-
-        if ($pdo_stmt == false) {
+        try {
+            $pdo_stmt->execute();
+        } catch (Exception $e) {
             throw new Exception (
-                $message="Failed to insert into database. Query string:\n$sql_string\n"
+                $message="Failed to insert into database. Query string:\n$sql_string\nError:\n$e"
             );
         }
+
+        if ($log_query) { self::log_query($sql_string); }
         return $pdo_stmt;
     }
 

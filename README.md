@@ -18,7 +18,7 @@ USE `wt_perfmon` ;
 -- Table `wt_perfmon`.`tbl_users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wt_perfmon`.`tbl_users` (
-  `user_id` INT NOT NULL,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(64) NOT NULL,
   `password` VARCHAR(250) NOT NULL,
   `usertype` VARCHAR(32) NOT NULL,

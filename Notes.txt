@@ -31,3 +31,12 @@ Proofs of concept successful.
     - Azure Depoyment Center service did not offer option for PHP in runtime stack. Cancelling trial.
     - Rudimentary/primitive routing to special pages/controllers working.
     - ISSUE: When using Router::setRoute(), the order in which the parameters are given in the call also changes the database column they are inserted into. Named parameters were used.
+2021-04-01
+    - Using method sprintf() to determine order in which function parameters are inserted into string does not work. Did not solve problem where order of parameters in function declaration was being followed instead of order in which they were inserted in function declaration body.
+    - To allow proper table name to be passed to form controller, an input field with the following properties was added to registration.view.php:
+    `<input type="hidden" name="table" value="tbl_users" readonly>`
+    - Test run with registration form is done. Flow:
+    registration.controller.php -> registration.view.php -> form.controller.php -> index.view.php
+    At the moment, registration.controller.php does nothing except load the view. Attempts to set a static variable in registration.controller.php using `FormHandler::$var` failed due to the variable being inaccessible. Removing the variable type declaration, adding a __constructor then using another method with `new self()` to set the variable, and simply using a method that set the static variable/property using `self::$var` failed. Error message:
+
+    Fatal error: Uncaught Error: Typed static property FormHandler::$target_table must not be accessed before initialization in C:\Users\max\Documents\GitHub\Laracasts-The-PHP-Practitioner\Core\FormHandler.php:9 Stack trace: #0 C:\Users\max\Documents\GitHub\Laracasts-The-PHP-Practitioner\Controllers\form.controller.php(16): FormHandler::postData() #1 C:\Users\max\Documents\GitHub\Laracasts-The-PHP-Practitioner\index.php(21): require('...') #2 {main} thrown in C:\Users\max\Documents\GitHub\Laracasts-The-PHP-Practitioner\Core\FormHandler.php on line 9

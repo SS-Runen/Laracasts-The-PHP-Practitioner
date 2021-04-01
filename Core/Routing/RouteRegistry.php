@@ -19,13 +19,18 @@ Router::setRoute(
 );
 
 Router::setRoute(
-    $uri="feedback",
-    $filepath="Controllers/feedback.controller.php"
+    $uri="register",
+    $filepath="Controllers/registration.controller.php"
 );
 
+// Router::setRoute(
+//     $uri="form_controller",
+//     $request_type="POST",
+//     $filepath="Core/FormHandler.php"
+// );
 Router::setRoute(
-    $uri="form_handler",
-    $filepath="Core/FormHandler.php",
+    $uri="form_controller",
+    $filepath="Controllers/form.controller.php",
     $request_type="POST"
 );
 ?>

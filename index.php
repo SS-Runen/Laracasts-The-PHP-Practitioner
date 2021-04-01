@@ -14,15 +14,10 @@ var_dump($passed_uri);
 
 echo "<hr>Request Type:<br>";
 var_dump(Router::getReqeustType());
-// die();
-$filepath = Router::returnPath($passed_uri, Router::getReqeustType());
-// $filepath = Router::returnPath("uri_list")->fetch(PDO::FETCH_ASSOC)["path"];
 
-// if (!is_a($filepath, "String") || is_null($filepath)) {
-//     echo "<h3>Error occured in directing you to \"$passed_uri\". Returning to Home Page.</h3>";
-//     require "Controllers/index.controller.php";
-// }
+$filepath = Router::returnPath($passed_uri, Router::getReqeustType());
 echo "<hr>Fetched Filepath:<br>$filepath";
+
 require $filepath;
 
 ?>
