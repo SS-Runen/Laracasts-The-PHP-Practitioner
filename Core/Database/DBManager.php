@@ -41,10 +41,10 @@ class DBManager {
                 $username=$db_username,
                 $passwd=$password,
                 $options=$options_array
-            );            
+            );
         }
         else {
-            $db_defaults = Configuration::returnDefaultConn();
+            $db_defaults = App::get($label="default_database");
             self::$default_connection = new PDO(
                 $dsn=$db_defaults["dsn"],
                 $username=$db_defaults["username"],

@@ -40,3 +40,7 @@ Proofs of concept successful.
     At the moment, registration.controller.php does nothing except load the view. Attempts to set a static variable in registration.controller.php using `FormHandler::$var` failed due to the variable being inaccessible. Removing the variable type declaration, adding a __constructor then using another method with `new self()` to set the variable, and simply using a method that set the static variable/property using `self::$var` failed. Error message:
 
     Fatal error: Uncaught Error: Typed static property FormHandler::$target_table must not be accessed before initialization in C:\Users\max\Documents\GitHub\Laracasts-The-PHP-Practitioner\Core\FormHandler.php:9 Stack trace: #0 C:\Users\max\Documents\GitHub\Laracasts-The-PHP-Practitioner\Controllers\form.controller.php(16): FormHandler::postData() #1 C:\Users\max\Documents\GitHub\Laracasts-The-PHP-Practitioner\index.php(21): require('...') #2 {main} thrown in C:\Users\max\Documents\GitHub\Laracasts-The-PHP-Practitioner\Core\FormHandler.php on line 9
+2021-04-03
+    - Command `composer install` will install itself an load dependencies declared in `/composer`.json. It will create a pre-set folder/directory structure and give an autoload.php file which should be called in order for the dependencies to actually load.
+    - Command `composer dump-autoload` must be run if a new class/file is created in your project. This command must also be run if modifications have been made to any class' source.
+    - For now, the class `App` will serve as a dependency injection container.

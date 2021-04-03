@@ -3,7 +3,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-require "./Core/Bootstrap.php";
+// require "./vendor/autoload.php";
+require_once "./vendor/autoload.php";
+require_once "./Core/Bootstrap.php";
 
 echo "<hr>RAW URI:<br>";
 var_dump($_SERVER["REQUEST_URI"]);
