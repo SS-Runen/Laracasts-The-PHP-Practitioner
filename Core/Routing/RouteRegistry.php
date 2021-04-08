@@ -1,10 +1,15 @@
 <?php
+
+use Core\Routing\Router;
+
 Router::makeURI_Table();
 
 Router::setRoute(
     $uri="",
-    $filepath="Controllers/index.controller.php"
+    $filepath="App/App/"
 );
+
+// require "App/Controllers/"
 
 Router::setRoute(
     $uri="uri_list",
@@ -21,6 +26,11 @@ Router::setRoute(
 Router::setRoute(
     $uri="register",
     $filepath="Controllers/registration.controller.php"
+);
+
+Router::setRoute(
+    $uri="about",
+    $filepath="Controllers/about.controller.php"
 );
 
 // Router::setRoute(

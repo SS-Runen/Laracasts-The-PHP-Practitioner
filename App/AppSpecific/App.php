@@ -1,7 +1,18 @@
 <?php
 
+namespace App\AppSpecific;
+
+use Exception;
+
 class App {
-    protected static array $dependencies = [];
+    protected static array $dependencies = [
+        "default_database" => [
+            "dsn" => "mysql:host=db-wtperfmon.chvhk2xcrgnq.ap-southeast-1.rds.amazonaws.com;dbname=wt_perfmon;",
+            "username" => "admin",
+            "password" => "vVYb9mvF",
+            "options" => []
+        ]
+    ];
 
     public static function set ($alias, $dependency) {
         self::$dependencies[$alias] = $dependency;

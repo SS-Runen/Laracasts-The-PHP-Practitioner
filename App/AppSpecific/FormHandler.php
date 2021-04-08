@@ -1,4 +1,9 @@
 <?php
+
+namespace App\AppSpecific;
+
+use Core\Database\DBManager;
+
 class FormHandler {
 
     public static function registerUser (

@@ -1,5 +1,12 @@
 <?php
 
+namespace Core\Routing;
+
+use App\Controllers\ViewController;
+use Core\Database\DBManager;
+use Exception;
+use PDO;
+
 class Router {    
 
     public function __construct()
@@ -72,12 +79,19 @@ class Router {
         return $result->fetch(PDO::FETCH_ASSOC)["path"];
     }
 
+    public static function callController(
+        String $uri,
+        String $request_type="GET"
+    ) {
+        return (new ViewController)->$uri();
+    }
+
     public static function getURI () {
         $plain_uri = trim(
             $str=parse_url(
                 $url=$_SERVER["REQUEST_URI"],
                 $component=PHP_URL_PATH
-                ),
+            ),
             $charlist='/'
         );
         

@@ -1,5 +1,11 @@
 <?php
 
+namespace Core\Database;
+
+use PDO;
+use Exception;
+use App\AppSpecific\App;
+
 class DBManager {
 
     private static $connection_in_use;

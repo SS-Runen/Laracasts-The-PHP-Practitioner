@@ -6,9 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App' => $baseDir . '/Core/App.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'DBManager' => $baseDir . '/Core/Database/DBManager.php',
-    'FormHandler' => $baseDir . '/Core/FormHandler.php',
-    'Router' => $baseDir . '/Core/Routing/Router.php',
+    'Core\\Database\\DBManager' => $baseDir . '/Core/Database/DBManager.php',
+    'Core\\Routing\\Router' => $baseDir . '/Core/Routing/Router.php',
 );

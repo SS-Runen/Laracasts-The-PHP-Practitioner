@@ -44,3 +44,5 @@ Proofs of concept successful.
     - Command `composer install` will install itself an load dependencies declared in `/composer`.json. It will create a pre-set folder/directory structure and give an autoload.php file which should be called in order for the dependencies to actually load.
     - Command `composer dump-autoload` must be run if a new class/file is created in your project. This command must also be run if modifications have been made to any class' source.
     - For now, the class `App` will serve as a dependency injection container.
+2021-04-08
+    - Unable to refactor code to allow namespaces. Error on scripts that do not contain classes, including the "landing page" index.php. Despite the user keyword being supplied with the right namesapce, class still not found.

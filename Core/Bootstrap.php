@@ -5,7 +5,8 @@
 // require "./Core/FormHandler.php";
 // require_once "./Core/Routing/RouteRegistry.php";
 
-include_once "./Public/Views/snippets/head.php";
-include_once "./Public/Views/snippets/navbar.php";
+include_once "./Public/snippets/head.php";
+include_once "./Public/snippets/navbar.php";
 require_once "Configuration.php";
+require_once "./App/AppSpecific/App.php";
 ?>
