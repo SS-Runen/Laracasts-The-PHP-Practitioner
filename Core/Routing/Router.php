@@ -1,13 +1,15 @@
 <?php
 
-namespace Core\Routing;
+// namespace Core\Routing;
 
-use App\Controllers\ViewController;
-use Core\Database\DBManager;
-use Exception;
-use PDO;
+// use App\Controllers\ViewController;
+// use Core\Database\DBManager;
+// use Exception;
+// use PDO;
 
-class Router {    
+class Router {
+    
+    private static $uri_map = array();
 
     public function __construct()
     {
@@ -79,11 +81,62 @@ class Router {
         return $result->fetch(PDO::FETCH_ASSOC)["path"];
     }
 
-    public static function callController(
-        String $uri,
-        String $request_type="GET"
+    private static function callController(
+        String $class,
+        String $func,
+        String $request_type="GET",
+        array $data=array()
     ) {
-        return (new ViewController)->$uri();
+        $args = [
+            $request_type,
+            $data
+        ];
+        
+        return (new $class)::$func(...$args);
+    }
+
+    public static function sendToController (
+        String $uri,
+        String $request_type="GET",
+        array $other_data=array()
+    ) {
+        $class = "RequestController";
+        $function = "functionNotFound";
+
+        var_dump(self::$uri_map);
+
+        if (array_key_exists($key=$uri, $search=self::$uri_map)) {
+            $function = self::$uri_map[$uri]["function"];
+        }
+        else {
+            throw new Exception("No controller for that URI:[$uri]");
+        }
+
+        if ($request_type === "POST") { $class="InputController"; }
+        elseif ($request_type === "GET") { $class="RequestController"; }
+
+        self::callController(
+            $class=$class,
+            $func=$function,
+            $request_type=$request_type,
+            $data=$other_data
+        );
+
+    }
+
+    public static function mapUriToController (
+        $uri,
+        $class_and_func
+    ) {
+        $class_function = explode(
+            $delmiter="@",
+            $string=$class_and_func
+        );
+
+        self::$uri_map[$uri] = [
+            "class"=>$class_function[0],
+            "function"=>$class_function[1]
+        ];
     }
 
     public static function getURI () {
@@ -98,7 +151,7 @@ class Router {
         return $plain_uri;
     }
 
-    public static function getReqeustType () {
+    public static function getRequestType () {
         $req_type = $_SERVER["REQUEST_METHOD"];
         return $req_type;
     }

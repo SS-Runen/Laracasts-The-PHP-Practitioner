@@ -1,37 +1,67 @@
 <?php
 
-use Core\Routing\Router;
-
-Router::makeURI_Table();
-
-Router::setRoute(
+Router::mapUriToController(
     $uri="",
-    $filepath="App/App/"
+    $class_and_func="RequestController@index"
 );
 
-// require "App/Controllers/"
-
-Router::setRoute(
-    $uri="uri_list",
-    $request_type="GET",
-    $filepath="Controllers/sitepages.controller.php"
+Router::mapUriToController(
+    $uri="home",
+    $class_and_func="RequestController@index"
 );
 
-Router::setRoute(
-    $uri="uri_list",
-    $filepath="Controllers/sitepages.controller.php",
-    $request_type="GET"
-);
-
-Router::setRoute(
-    $uri="register",
-    $filepath="Controllers/registration.controller.php"
-);
-
-Router::setRoute(
+Router::mapUriToController(
     $uri="about",
-    $filepath="Controllers/about.controller.php"
+    $class_and_func="RequestController@about"
 );
+
+Router::mapUriToController(
+    "site_pages",
+    $class_and_func="RequestController@sitemap"
+);
+
+Router::mapUriToController(
+    "uri_list",
+    $class_and_func="RequestController@sitemap"
+);
+
+Router::mapUriToController(
+    "register",
+    $class_and_func="RequestController@registrationForm"
+);
+
+Router::mapUriToController(
+    "form_handler",
+    $class_and_func="InputController@registrationForm"
+);
+
+// // use Core\Routing\Router;
+
+// Router::makeURI_Table();
+
+// // require "App/Controllers/"
+
+// Router::setRoute(
+//     $uri="uri_list",
+//     $request_type="GET",
+//     $filepath="Controllers/sitepages.controller.php"
+// );
+
+// Router::setRoute(
+//     $uri="uri_list",
+//     $filepath="Controllers/sitepages.controller.php",
+//     $request_type="GET"
+// );
+
+// Router::setRoute(
+//     $uri="register",
+//     $filepath="Controllers/registration.controller.php"
+// );
+
+// Router::setRoute(
+//     $uri="about",
+//     $filepath="Controllers/about.controller.php"
+// );
 
 // Router::setRoute(
 //     $uri="form_controller",

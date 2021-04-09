@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AppSpecific;
+// namespace App\AppSpecific;
 
-use Core\Database\DBManager;
+// use Core\Database\DBManager;
 
 class FormHandler {
 

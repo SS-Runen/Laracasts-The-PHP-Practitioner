@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Controllers;
+// namespace App\Controllers;
 
-use Core\Routing\Router;
-use Core\Database\DBManager;
-use PDO;
-use Exception;
-use PDOException;
+// use Core\Routing\Router;
+// use Core\Database\DBManager;
+// use PDO;
+// use Exception;
+// use PDOException;
 
-class ViewController{
+class RequestController{
 
-    public function index() {
+    public static function index(mixed $data) {
 
         $pdo = null;
         try {
@@ -63,6 +63,29 @@ class ViewController{
 
         # Require corresponding view file, in this case the view of homepage.
         require_once "Public/Views/index.view.php";
+    }
+
+    public static function about (mixed $data) {
+        require "./Public/Views/about.view.php";
+    }
+
+    public static function sitemap (mixed $data) {
+        $pdostmt_sitepages = DBManager::query(
+            $tbl="tbl_routes",
+            $columns="uri"
+        );
+        
+        require "./Public/Views/sitepages.view.php";
+    }
+
+    public static function registrationForm () {
+        require "./Public/Views/registration.view.php";
+    }
+
+    public static function functionNotFound (mixed $data) {
+        echo "<pre><br><h2>Data for that request/operation not found.</h2><br>";
+        echo "<h3>".var_dump($data)."</h3></pre>";        
+        require "./Public/Views/resource_not_found.view.php";
     }
 
 }

@@ -34,5 +34,5 @@
 </div>
 
 <?php
-include "snippets/footer.php";
+include "./Public/snippets/footer.php";
 ?>

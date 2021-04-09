@@ -1,10 +1,10 @@
 <?php
 
-namespace Core\Database;
+// namespace Core\Database;
 
-use PDO;
-use Exception;
-use App\AppSpecific\App;
+// use PDO;
+// use Exception;
+// use App\AppSpecific\App;
 
 class DBManager {
 

@@ -8,8 +8,8 @@ class ComposerStaticInit64331bbc1441e7ddd674b6c26566ea06
 {
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Core\\Database\\DBManager' => __DIR__ . '/../..' . '/Core/Database/DBManager.php',
-        'Core\\Routing\\Router' => __DIR__ . '/../..' . '/Core/Routing/Router.php',
+        'DBManager' => __DIR__ . '/../..' . '/Core/Database/DBManager.php',
+        'Router' => __DIR__ . '/../..' . '/Core/Routing/Router.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

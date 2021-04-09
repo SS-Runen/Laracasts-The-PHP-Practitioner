@@ -1,5 +1,5 @@
 <?php
-namespace Core\Routing;
+// namespace Core\Routing;
 
 // Options to show warnings/errors.
 error_reporting(E_ALL);
@@ -20,10 +20,14 @@ echo "<hr>Processed URI:<br>";
 var_dump($passed_uri);
 
 echo "<hr>Request Type:<br>";
-var_dump(Router::getReqeustType());
+var_dump(Router::getRequestType());
 
-Router::callController(
-    $uri=$passed_uri,
-    $request_type=$_SERVER["REQUEST_URI"]
-)
+// Router::sendToController(
+//     $request_type=Router::getRequestType(),
+//     $uri=Router::getURI()
+// );
+Router::sendToController(
+    $uri=Router::getURI(),
+    $request_type=Router::getRequestType()
+);
 ?>
