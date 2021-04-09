@@ -35,6 +35,11 @@ Router::mapUriToController(
     $class_and_func="InputController@registrationForm"
 );
 
+Router::mapUriToController(
+    "register_user",
+    "InputController@registerUser"
+);
+
 // // use Core\Routing\Router;
 
 // Router::makeURI_Table();
@@ -68,9 +73,9 @@ Router::mapUriToController(
 //     $request_type="POST",
 //     $filepath="Core/FormHandler.php"
 // );
-Router::setRoute(
-    $uri="form_controller",
-    $filepath="Controllers/form.controller.php",
-    $request_type="POST"
-);
+// Router::setRoute(
+//     $uri="form_controller",
+//     $filepath="Controllers/form.controller.php",
+//     $request_type="POST"
+// );
 ?>

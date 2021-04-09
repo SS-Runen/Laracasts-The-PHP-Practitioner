@@ -1,5 +1,5 @@
 <div class="container">
-  <form action="/form_controller" method="POST">
+  <form action="/register_user" method="POST">
   <center>
     <label name="registration"><?= "<h1>" ?>Register<?= "</h1>" ?></label>
     <!-- <input type="hidden" name="table" value="tbl_users" readonly> -->

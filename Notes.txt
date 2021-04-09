@@ -46,3 +46,6 @@ Proofs of concept successful.
     - For now, the class `App` will serve as a dependency injection container.
 2021-04-08
     - Unable to refactor code to allow namespaces. Error on scripts that do not contain classes, including the "landing page" index.php. Despite the user keyword being supplied with the right namesapce, class still not found.
+2021-04-09
+    - Rolling back scope: omitted requirement to use namesapces. Refactored to use controller classes instead. Structure: Two controllers, InputController for user data upload or form submissions/actions. RequestController for all GET requests. One function to one URI. Used the `mixed` pseudo-type to allow an optional parameter `data` for all functions for error message.
+    - Used PHP syntax where if item after `new` was a string, a class of that name would be created. if the accessors `::` or `->` were followed by a string, a function of that name would also be called using the object before the accessors.
