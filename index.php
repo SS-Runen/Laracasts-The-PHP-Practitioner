@@ -5,6 +5,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
+//Required classes within namespaces.
+use App\Core\Routing\Router;
+
 //Required scripts.
 require_once "./vendor/autoload.php";
 require_once "./Core/Bootstrap.php";

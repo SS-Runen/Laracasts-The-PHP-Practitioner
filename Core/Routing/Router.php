@@ -1,11 +1,10 @@
 <?php
 
-// namespace Core\Routing;
+namespace App\Core\Routing;
 
-// use App\Controllers\ViewController;
-// use Core\Database\DBManager;
-// use Exception;
-// use PDO;
+use App\AppSpecific\Controllers\{RequestController, InputController};
+use App\Core\Database\DBManager;
+use Exception, PDO;
 
 class Router {
     
@@ -100,10 +99,9 @@ class Router {
         String $request_type="GET",
         array $other_data=array()
     ) {
-        $class = "RequestController";
-        $function = "functionNotFound";
-
-        var_dump(self::$uri_map);
+        $namespace = "App\AppSpecific\Controllers";
+        $class = "$namespace\RequestController";
+        $function = "functionNotFound";        
 
         if (array_key_exists($key=$uri, $search=self::$uri_map)) {
             $function = self::$uri_map[$uri]["function"];
@@ -113,7 +111,7 @@ class Router {
         }
 
         if ($request_type === "POST") { $class="InputController"; }
-        elseif ($request_type === "GET") { $class="RequestController"; }
+        elseif ($request_type === "GET") { $class="$namespace\RequestController"; }
 
         self::callController(
             $class=$class,

@@ -9,9 +9,9 @@
 #These scripts are outside the Core.
 include_once "./Public/snippets/head.php";
 include_once "./Public/snippets/navbar.php";
-require_once "./App/AppSpecific/App.php";
-require_once "./App/Controllers/RequestController.php";
-require_once "./App/Controllers/InputController.php";
+require_once "./AppSpecific/App.php";
+require_once "./AppSpecific/Controllers/RequestController.php";
+require_once "./AppSpecific/Controllers/InputController.php";
 
 require_once "Configuration.php";
 ?>

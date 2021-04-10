@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\Database\DBManager;
+
 class InputController {
 
     public static function registerUser (
@@ -13,7 +15,7 @@ class InputController {
         echo "<br><h3>GET:</h3>";
         var_dump($_GET);
 
-        require_once "./App/AppSpecific/FormHandler.php";
+        require_once "./AppSpecific/FormHandler.php";
 
         $fieldnames = implode($glue=',', $pieces=array_keys($_POST));
         $contents = array_values($_POST);

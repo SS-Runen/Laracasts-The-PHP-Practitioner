@@ -7,9 +7,9 @@ namespace Composer\Autoload;
 class ComposerStaticInit64331bbc1441e7ddd674b6c26566ea06
 {
     public static $classMap = array (
+        'App\\Core\\Database\\DBManager' => __DIR__ . '/../..' . '/Core/Database/DBManager.php',
+        'App\\Core\\Routing\\Router' => __DIR__ . '/../..' . '/Core/Routing/Router.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'DBManager' => __DIR__ . '/../..' . '/Core/Database/DBManager.php',
-        'Router' => __DIR__ . '/../..' . '/Core/Routing/Router.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

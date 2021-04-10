@@ -2,9 +2,9 @@
 
 // namespace Core;
 
-// use App\AppSpecific\App;
+use App\AppSpecific\App;
 
-require_once "./App/AppSpecific/App.php";
+require_once "./AppSpecific/App.php";
 
 App::set(
     $alias="default_database",

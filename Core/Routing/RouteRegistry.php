@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\Routing\Router;
+
 Router::mapUriToController(
     $uri="",
     $class_and_func="RequestController@index"

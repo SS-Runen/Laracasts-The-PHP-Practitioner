@@ -49,3 +49,6 @@ Proofs of concept successful.
 2021-04-09
     - Rolling back scope: omitted requirement to use namesapces. Refactored to use controller classes instead. Structure: Two controllers, InputController for user data upload or form submissions/actions. RequestController for all GET requests. One function to one URI. Used the `mixed` pseudo-type to allow an optional parameter `data` for all functions for error message.
     - Used PHP syntax where if item after `new` was a string, a class of that name would be created. if the accessors `::` or `->` were followed by a string, a function of that name would also be called using the object before the accessors.
+2021-04-10
+    - Successful refactor into using namespaces. The error was that the namespaces did not have one top-level namespace. Setting the namespaces as `Core\Database` and `AppSpecific\Controllers` meant that the controllers and the database helper class were prevented from communicating with each other. There has to be an identical top-level namespace for them to use each other. Correct namespaces are `App\Core\Database` and `App\AppSpecific\Controllers`. The keyword `App` is arbitrary.
+    - Namespaces are arbitrary and do not need to mimic folder structure to work. Namespaces mimicing folder structure is just a convention.

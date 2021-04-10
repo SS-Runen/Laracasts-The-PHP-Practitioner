@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\AppSpecific\Controllers;
 
+// use Core\Routing\Router;
 use App\Core\Database\DBManager;
 use PDO, Exception, PDOException;
 

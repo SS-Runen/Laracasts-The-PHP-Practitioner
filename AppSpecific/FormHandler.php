@@ -2,7 +2,7 @@
 
 // namespace App\AppSpecific;
 
-// use Core\Database\DBManager;
+use App\Core\Database\DBManager;
 
 class FormHandler {
 

@@ -1,8 +1,8 @@
 <?php
 
-// namespace App\AppSpecific;
+namespace App\AppSpecific;
 
-// use Exception;
+use Exception;
 
 class App {
     protected static array $dependencies = [
