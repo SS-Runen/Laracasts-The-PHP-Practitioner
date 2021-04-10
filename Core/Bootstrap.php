@@ -13,5 +13,5 @@ require_once "./AppSpecific/App.php";
 require_once "./AppSpecific/Controllers/RequestController.php";
 require_once "./AppSpecific/Controllers/InputController.php";
 
-require_once "Configuration.php";
+// require_once "Configuration.php";
 ?>
