@@ -1,10 +1,20 @@
 <?php
+// namespace Core\Routing;
+
 // Options to show warnings/errors.
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-require "./Core/Bootstrap.php";
+//Required classes within namespaces.
+use App\Core\Routing\Router;
 
+//Required scripts.
+require_once "./vendor/autoload.php";
+require_once "./Core/Bootstrap.php";
+require_once "./Core/Routing/Router.php";
+require_once "./Core/Routing/RouteRegistry.php";
+
+// Standard non-production code for monitoring and testing purposes.
 echo "<hr>RAW URI:<br>";
 var_dump($_SERVER["REQUEST_URI"]);
 
@@ -13,16 +23,14 @@ echo "<hr>Processed URI:<br>";
 var_dump($passed_uri);
 
 echo "<hr>Request Type:<br>";
-var_dump(Router::getReqeustType());
-// die();
-$filepath = Router::returnPath($passed_uri, Router::getReqeustType());
-// $filepath = Router::returnPath("uri_list")->fetch(PDO::FETCH_ASSOC)["path"];
+var_dump(Router::getRequestType());
 
-// if (!is_a($filepath, "String") || is_null($filepath)) {
-//     echo "<h3>Error occured in directing you to \"$passed_uri\". Returning to Home Page.</h3>";
-//     require "Controllers/index.controller.php";
-// }
-echo "<hr>Fetched Filepath:<br>$filepath";
-require $filepath;
-
+// Router::sendToController(
+//     $request_type=Router::getRequestType(),
+//     $uri=Router::getURI()
+// );
+Router::sendToController(
+    $uri=Router::getURI(),
+    $request_type=Router::getRequestType()
+);
 ?>

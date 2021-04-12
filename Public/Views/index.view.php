@@ -31,5 +31,5 @@
 
 
 <?php
-include "snippets/footer.php";
+include_once "./Public/snippets/footer.php";
 ?>
