@@ -8,7 +8,7 @@ use PDO, Exception, PDOException;
 
 class RequestController{
 
-    public static function index(mixed $data) {
+    public static function index($data) {
 
         $pdo = null;
         try {
@@ -63,11 +63,11 @@ class RequestController{
         require_once "Public/Views/index.view.php";
     }
 
-    public static function about (mixed $data) {
+    public static function about ($data) {
         require "./Public/Views/about.view.php";
     }
 
-    public static function sitemap (mixed $data) {
+    public static function sitemap ($data) {
         $pdostmt_sitepages = DBManager::query(
             $tbl="tbl_routes",
             $columns="uri"
@@ -80,7 +80,7 @@ class RequestController{
         require "./Public/Views/registration.view.php";
     }
 
-    public static function functionNotFound (mixed $data) {
+    public static function functionNotFound ($data) {
         echo "<pre><br><h2>Data for that request/operation not found.</h2><br>";
         echo "<h3>".var_dump($data)."</h3></pre>";        
         require "./Public/Views/resource_not_found.view.php";
