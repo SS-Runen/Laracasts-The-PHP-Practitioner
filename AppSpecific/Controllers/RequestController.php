@@ -22,17 +22,17 @@ class RequestController{
             //     $passwd = ""
             // ); #Note; For MySQL local XAMPP
             
-            // $pdo = new PDO(
-            //     $dsn = "mysql:host=127.0.0.1;dbname=wt_perfmon;",
-            //     $username = "root",
-            //     $passwd = "root"
-            // ); #Note: For MySQL local 8.0.2
-            
             $pdo = new PDO(
-                $dsn = "mysql:host=db-wtperfmon.chvhk2xcrgnq.ap-southeast-1.rds.amazonaws.com;dbname=wt_perfmon;",
-                $username = "admin",
-                $passwd = "vVYb9mvF"
-            );
+                $dsn = "mysql:host=127.0.0.1;dbname=wt_perfmon;",
+                $username = "root",
+                $passwd = "root"
+            ); #Note: For MySQL local 8.0.2
+            
+            // $pdo = new PDO(
+            //     $dsn = "mysql:host=db-wtperfmon.chvhk2xcrgnq.ap-southeast-1.rds.amazonaws.com;dbname=wt_perfmon;",
+            //     $username = "admin",
+            //     $passwd = "vVYb9mvF"
+            // );
         
         } catch (PDOException $e) {    
             echo "<pre>"."Could not connect to database. Error:\n$e"."</pre>";
